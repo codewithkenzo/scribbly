@@ -27,14 +27,22 @@ export function loadConfig(): ScribblyConfig {
       try {
         const content = readFileSync(path, 'utf-8');
         const config = JSON.parse(content);
-        return { ...defaultConfig, ...config };
+        return {
+          ...defaultConfig,
+          ...config,
+          // Fallback to environment variable if not in config
+          openaiApiKey: config.openaiApiKey || process.env.OPENAI_API_KEY,
+        };
       } catch (error) {
         console.warn(`Failed to load config from ${path}`);
       }
     }
   }
 
-  return defaultConfig;
+  return {
+    ...defaultConfig,
+    openaiApiKey: process.env.OPENAI_API_KEY,
+  };
 }
 
 export function initConfig(): void {
