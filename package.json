@@ -1,0 +1,24 @@
+{
+  "name": "scribbly",
+  "version": "1.0.0",
+  "description": "AI-powered auto-documentation CLI",
+  "type": "module",
+  "scripts": {
+    "cli": "bun run src/cli.ts",
+    "generate": "bun run src/cli.ts generate",
+    "init": "bun run src/cli.ts init"
+  },
+  "dependencies": {
+    "ai": "^3.0.0",
+    "@ai-sdk/openai": "^3.0.0",
+    "handlebars": "^4.7.8",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "typescript": "^5.0.0"
+  },
+  "bin": {
+    "scribbly": "./src/cli.ts"
+  }
+}

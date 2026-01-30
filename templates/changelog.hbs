@@ -1,0 +1,20 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+{{#if summary}}
+## Summary
+{{summary}}
+{{/if}}
+
+{{#each groups}}
+{{#if this.length}}
+### {{@key}}
+{{#each this}}
+- {{#if breaking}}💥 **BREAKING** {{/if}}{{type}}{{#if scope}} (\`{{scope}}\`){{/if}}: {{message}}
+{{/each}}
+{{/if}}
+{{/each}}
+
+---
+*Generated on {{date}}*
