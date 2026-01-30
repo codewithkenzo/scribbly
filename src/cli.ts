@@ -3,6 +3,9 @@
 import { parseArgs } from 'util';
 import { generateChangelog } from './generator.js';
 import { initConfig } from './config.js';
+import { generateApiDocs } from './commands/api.js';
+import { generateReadme } from './commands/readme.js';
+import { watchMode } from './commands/watch.js';
 
 const args = parseArgs({
   args: Bun.argv,
@@ -25,6 +28,30 @@ async function main() {
         process.exit(1);
       }
       break;
+    case 'api':
+      try {
+        await generateApiDocs();
+      } catch (error) {
+        console.error('Error generating API docs:', error);
+        process.exit(1);
+      }
+      break;
+    case 'readme':
+      try {
+        await generateReadme();
+      } catch (error) {
+        console.error('Error generating README:', error);
+        process.exit(1);
+      }
+      break;
+    case 'watch':
+      try {
+        await watchMode();
+      } catch (error) {
+        console.error('Error starting watch mode:', error);
+        process.exit(1);
+      }
+      break;
     case 'init':
       initConfig();
       break;
@@ -35,6 +62,9 @@ Scribbly - AI-powered auto-documentation CLI
 
 Usage:
   bun run cli generate    Generate changelog from commits
+  bun run cli api         Generate API.md from TypeScript
+  bun run cli readme      Scaffold README.md from project
+  bun run cli watch       Auto-regenerate docs on file changes
   bun run cli init        Create default config
   bun run cli help        Show this help
 `);

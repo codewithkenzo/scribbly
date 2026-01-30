@@ -1,0 +1,57 @@
+# API Reference
+
+{{#if summary}}
+## Summary
+{{summary}}
+{{/if}}
+
+{{#if modules}}
+{{#each modules}}
+## Module: {{moduleName}}
+
+{{#if exports.length}}
+{{#each exports}}
+### `{{name}}`
+
+{{#if comment.summary}}
+{{comment.summary}}
+{{/if}}
+
+{{#if signature}}
+```typescript
+{{signature}}
+```
+{{/if}}
+
+{{#if comment.params.length}}
+**Parameters:**
+{{#each comment.params}}
+- `{{name}}` (`{{type}}`): {{description}}
+{{/each}}
+{{/if}}
+
+{{#if comment.returns}}
+**Returns:** `{{comment.returns.type}}` - {{comment.returns.description}}
+{{/if}}
+
+{{#if comment.examples.length}}
+**Examples:**
+{{#each comment.examples}}
+```typescript
+{{this}}
+```
+{{/each}}
+{{/if}}
+
+{{#if comment.deprecated}}
+> ⚠️ **Deprecated:** {{comment.deprecated}}
+{{/if}}
+
+---
+{{/each}}
+{{/if}}
+{{/each}}
+{{/if}}
+
+---
+*Generated on {{date}}*
