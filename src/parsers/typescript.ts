@@ -123,11 +123,9 @@ export function parseTypeScriptFile(filePath: string, baseDir: string): ParsedMo
     // Find line number
     const lineNumber = content.substring(0, match.index).split('\n').length;
 
-    // Get preceding text for context
-    const precedingText = content.substring(0, match.index).split('\n').slice(-5).join('\n');
-
+    // Get export match for context
     const comment = parseTsDocComment(fullComment);
-    const kind = detectExportKind(fullComment, precedingText);
+    const kind = detectExportKind(fullComment, exportMatch);
 
     // Extract signature
     let signature = exportMatch;
