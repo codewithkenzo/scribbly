@@ -18,7 +18,12 @@ const command = args.positionals[2];
 async function main() {
   switch (command) {
     case 'generate':
-      await generateChangelog();
+      try {
+        await generateChangelog();
+      } catch (error) {
+        console.error('Error generating changelog:', error);
+        process.exit(1);
+      }
       break;
     case 'init':
       initConfig();

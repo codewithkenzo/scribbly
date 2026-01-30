@@ -52,6 +52,12 @@ export function parseCommitsFromGit(): Commit[] {
     cwd: process.cwd(),
   });
 
+  // Check if git command succeeded
+  if (result.exitCode !== 0) {
+    console.warn('Warning: Not in a git repository or git command failed');
+    return [];
+  }
+
   const output = result.stdout.toString().trim();
   if (!output) return [];
 
