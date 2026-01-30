@@ -20,8 +20,13 @@ export async function enhanceCommitSummary(commits: Commit[], apiKey?: string): 
   const prompt = `Generate a concise one-sentence summary for these commits:\n\n${commitList}\n\nKeep it brief and professional, suitable for a changelog header.`;
 
   try {
+    // Set API key in environment if provided
+    if (apiKey) {
+      process.env.OPENAI_API_KEY = apiKey;
+    }
+
     const { object } = await generateObject({
-      model: openai('gpt-4o', { apiKey }),
+      model: openai('gpt-4o'),
       schema: summarySchema,
       prompt,
     });
