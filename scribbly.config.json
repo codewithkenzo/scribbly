@@ -1,0 +1,5 @@
+{
+  "model": "gpt-4o",
+  "outputPath": "./CHANGELOG.md",
+  "templatePath": "./templates/changelog.hbs"
+}

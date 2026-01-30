@@ -3,19 +3,31 @@ import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { loadConfig } from './config.js';
-import { parseCommitsFromGit, groupCommitsByType, type Commit } from './parsers/commits.js';
+import { parseCommitsFromGit, groupCommitsByType } from './parsers/commits.js';
 import { enhanceCommitSummary } from './ai/enhancer.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const defaultTemplate = `# Changelog
 
+All notable changes to this project will be documented in this file.
+
+{{#if summary}}
+## Summary
+{{summary}}
+{{/if}}
+
 {{#each groups}}
-## {{@key}}
+{{#if this.length}}
+### {{@key}}
 {{#each this}}
-- {{type}}{{#if scope}} (\`{{scope}}\`){{/if}}: {{message}}{{/if}}
+- {{#if breaking}}💥 **BREAKING** {{/if}}{{type}}{{#if scope}} (\`{{scope}}\`){{/if}}: {{message}}
 {{/each}}
+{{/if}}
 {{/each}}
+
+---
+*Generated on {{date}}*
 `;
 
 export async function generateChangelog(): Promise<void> {
@@ -26,7 +38,6 @@ export async function generateChangelog(): Promise<void> {
   if (config.templatePath && existsSync(config.templatePath)) {
     templateContent = readFileSync(config.templatePath, 'utf-8');
   } else {
-    // Use default template
     templateContent = defaultTemplate;
   }
 
@@ -41,18 +52,15 @@ export async function generateChangelog(): Promise<void> {
   // Group commits by type
   const groupedCommits = groupCommitsByType(commits);
 
-  // Remove empty groups
-  Object.keys(groupedCommits).forEach((key) => {
-    if (groupedCommits[key].length === 0) {
-      delete groupedCommits[key];
-    }
-  });
-
   // Optionally enhance with AI
   let aiSummary: string | undefined;
   if (config.openaiApiKey) {
     process.env.OPENAI_API_KEY = config.openaiApiKey;
-    aiSummary = await enhanceCommitSummary(commits);
+    try {
+      aiSummary = await enhanceCommitSummary(commits, config.openaiApiKey);
+    } catch (error) {
+      console.warn('AI enhancement skipped:', error);
+    }
   }
 
   // Compile template

@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "cli": "bun run src/cli.ts",
-    "build": "tsc",
     "generate": "bun run src/cli.ts generate",
     "init": "bun run src/cli.ts init"
   },
@@ -15,10 +14,10 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^25.0.0",
     "typescript": "^5.0.0"
   },
   "bin": {
-    "scribbly": "./dist/cli.js"
+    "scribbly": "./src/cli.ts"
   }
 }

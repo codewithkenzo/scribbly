@@ -5,15 +5,19 @@ import type { Commit } from '../parsers/commits.js';
 
 const summarySchema = z.object({
   summary: z.string(),
-  details: z.string().optional(),
 });
 
-export async function enhanceCommitSummary(commits: Commit[]): Promise<string> {
+export async function enhanceCommitSummary(commits: Commit[], apiKey?: string): Promise<string> {
   const commitList = commits
+    .filter((c) => c.type !== 'chore' || c.message.length > 10)
     .map((c) => `- **${c.type}**${c.scope ? ` (\`${c.scope}\`)` : ''}: ${c.message}`)
     .join('\n');
 
-  const prompt = `Generate a concise changelog summary for these commits:\n\n${commitList}\n\nFormat the output as a brief, professional changelog entry. Group by type and provide meaningful summaries.`;
+  if (!commitList) {
+    return 'Minor updates and maintenance';
+  }
+
+  const prompt = `Generate a concise one-sentence summary for these commits:\n\n${commitList}\n\nKeep it brief and professional, suitable for a changelog header.`;
 
   try {
     const { object } = await generateObject({
@@ -24,7 +28,7 @@ export async function enhanceCommitSummary(commits: Commit[]): Promise<string> {
 
     return object.summary;
   } catch (error) {
-    console.error('Failed to enhance commit summary:', error);
-    return `Generated changelog from ${commits.length} commits`;
+    console.warn('AI enhancement failed, using default summary:', error);
+    return `Changes include ${commits.length} commits`;
   }
 }

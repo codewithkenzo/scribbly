@@ -1,27 +1,43 @@
 #!/usr/bin/env bun
 
-import { Command } from 'commander';
+import { parseArgs } from 'util';
 import { generateChangelog } from './generator.js';
 import { initConfig } from './config.js';
 
-const program = new Command();
+const args = parseArgs({
+  args: Bun.argv,
+  options: {
+    help: { type: 'boolean', short: 'h' },
+  },
+  strict: false,
+  allowPositionals: true,
+});
 
-program
-  .name('scribbly')
-  .description('AI-powered auto-documentation CLI');
+const command = args.positionals[2];
 
-program
-  .command('generate')
-  .description('Generate changelog from commits')
-  .action(async () => {
-    await generateChangelog();
-  });
+async function main() {
+  switch (command) {
+    case 'generate':
+      await generateChangelog();
+      break;
+    case 'init':
+      initConfig();
+      break;
+    case 'help':
+    case undefined:
+      console.log(`
+Scribbly - AI-powered auto-documentation CLI
 
-program
-  .command('init')
-  .description('Create default configuration')
-  .action(() => {
-    initConfig();
-  });
+Usage:
+  bun run cli generate    Generate changelog from commits
+  bun run cli init        Create default config
+  bun run cli help        Show this help
+`);
+      break;
+    default:
+      console.error(`Unknown command: ${command}`);
+      process.exit(1);
+  }
+}
 
-program.parse();
+main();
