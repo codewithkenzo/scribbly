@@ -55,7 +55,6 @@ export async function generateChangelog(): Promise<void> {
   // Optionally enhance with AI
   let aiSummary: string | undefined;
   if (config.openaiApiKey) {
-    process.env.OPENAI_API_KEY = config.openaiApiKey;
     try {
       aiSummary = await enhanceCommitSummary(commits, config.openaiApiKey);
     } catch (error) {

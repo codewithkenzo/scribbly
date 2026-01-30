@@ -21,7 +21,7 @@ export async function enhanceCommitSummary(commits: Commit[], apiKey?: string): 
 
   try {
     const { object } = await generateObject({
-      model: openai('gpt-4o'),
+      model: openai('gpt-4o', { apiKey }),
       schema: summarySchema,
       prompt,
     });
