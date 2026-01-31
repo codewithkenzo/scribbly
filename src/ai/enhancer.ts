@@ -21,12 +21,12 @@ export async function enhanceCommitSummary(commits: Commit[], apiKey?: string): 
 
   try {
     const { object } = await generateObject({
-      model: openai('gpt-4o', { apiKey }),
+      model: openai('gpt-4o'),
       schema: summarySchema,
       prompt,
     });
 
-    return object.summary;
+    return (object as { summary: string }).summary;
   } catch (error) {
     console.warn('AI enhancement failed, using default summary:', error);
     return `Changes include ${commits.length} commits`;
