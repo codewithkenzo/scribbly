@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - feat: initial scaffold for scribbly
 - feat: initial scaffold for scribbly
 ### fix
+- fix: improve API.md parsing and README.md generation
 - fix: consolidate README and help text fixes
 - fix: add @types/bun and update ai SDK for type compatibility
 - fix: pass exportMatch to detectExportKind instead of precedingText
