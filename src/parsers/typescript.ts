@@ -27,27 +27,29 @@ export interface ParsedModule {
 /**
  * Parse TSDoc comment block
  */
-function parseTsDocComment(content: string): TypeDocComment {
+function parseTsDocComment(commentBlock: string): TypeDocComment {
   const comment: TypeDocComment = {
     summary: '',
     params: [],
     examples: [],
   };
 
-  // Extract summary (everything before first @tag)
-  const summaryMatch = content.match(/^\/\*\*([\s\S]*?)(?=\*\/)/);
-  if (summaryMatch) {
-    let summary = summaryMatch[1]
-      .replace(/^\s*\*+/gm, '')
-      .replace(/^\s+/gm, '')
-      .trim();
-    comment.summary = summary;
+  const commentMatch = commentBlock.match(/\/\*\*([\s\S]*?)\*\//);
+  if (!commentMatch) return comment;
+  
+  const content = commentMatch[1]
+    .split('\n')
+    .map(line => line.replace(/^\s*\*\s?/, ''))
+    .join('\n')
+    .trim();
+
+  const summaryMatch = content.match(/^([^@]*)/);
+  if (summaryMatch && summaryMatch[1].trim()) {
+    comment.summary = summaryMatch[1].trim();
   }
 
-  // Parse @param tags
-  const paramRegex = /@param\s+(\w+)(?:\s+\{([^}]+)\})?\s*-?\s*(.*)/g;
-  let match;
-  while ((match = paramRegex.exec(content)) !== null) {
+  const paramMatches = content.matchAll(/@param\s+(\w+)(?:\s+\{([^}]+)\})?\s*-?\s*([^\n@]*)/g);
+  for (const match of paramMatches) {
     comment.params.push({
       name: match[1],
       type: match[2] || 'unknown',
@@ -55,9 +57,7 @@ function parseTsDocComment(content: string): TypeDocComment {
     });
   }
 
-  // Parse @returns tag
-  const returnsRegex = /@returns?\s*\{([^}]+)\}\s*-?\s*(.*)/;
-  const returnsMatch = content.match(returnsRegex);
+  const returnsMatch = content.match(/@returns?\s*\{([^}]+)\}\s*-?\s*([^\n@]*)/);
   if (returnsMatch) {
     comment.returns = {
       type: returnsMatch[1],
@@ -65,14 +65,13 @@ function parseTsDocComment(content: string): TypeDocComment {
     };
   }
 
-  // Parse @example tags
-  const exampleRegex = /@example\s*([\s\S]*?)(?=\*\/|@)/g;
-  while ((match = exampleRegex.exec(content)) !== null) {
-    comment.examples.push(match[1].trim());
+  const exampleMatches = content.matchAll(/@example\s*([\s\S]*?)(?=@\w|$)/g);
+  for (const match of exampleMatches) {
+    const example = match[1].trim();
+    if (example) comment.examples.push(example);
   }
 
-  // Parse @deprecated tag
-  const deprecatedMatch = content.match(/@deprecated\s*(.*)/);
+  const deprecatedMatch = content.match(/@deprecated\s*([^\n@]*)/);
   if (deprecatedMatch) {
     comment.deprecated = deprecatedMatch[1].trim();
   }

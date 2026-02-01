@@ -11,20 +11,9 @@ Parse TSDoc comment block
 export function parseTypeScriptFile
 ```
 
-**Parameters:**
-- `tags` (`unknown`): const paramRegex &#x3D; /@param\s+(\w+)(?:\s+\{([^}]+)\})?\s*-?\s*(.*)/g;
 
 
-**Examples:**
-```typescript
-tags
-  const exampleRegex &#x3D; /
-```
-```typescript
-\s*([\s\S]*?)(?&#x3D;\*\/|
-```
 
-> ⚠️ **Deprecated:** tag
 
 ---
 ### `parseTypeScriptDirectory`
@@ -70,4 +59,4 @@ export async function watchMode
 ---
 
 ---
-*Generated on 2026-01-30*
+*Generated on 2026-02-01*

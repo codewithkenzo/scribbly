@@ -6,35 +6,35 @@ import { loadConfig } from '../config.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const defaultTemplate = `# {{projectName}}
+const defaultTemplate = `# {{{projectName}}}
 
 {{#if description}}
-{{description}}
+{{{description}}}
 {{/if}}
 
 {{#if badges.length}}
 {{#each badges}}
-![{{name}}]({{url}})
+![{{{name}}}]({{{url}}})
 {{/each}}
 {{/if}}
 
 ## Installation
 
 \`\`\`bash
-{{installCommand}}
+{{{installCommand}}}
 \`\`\`
 
 {{#if usage}}
 ## Usage
 
-{{usage}}
+{{{usage}}}
 {{/if}}
 
 {{#if features.length}}
 ## Features
 
 {{#each features}}
-- {{this}}
+- {{{this}}}
 {{/each}}
 {{/if}}
 
@@ -42,7 +42,7 @@ const defaultTemplate = `# {{projectName}}
 ## Commands
 
 {{#each commands}}
-- \`{{command}}\`: {{description}}
+- \`{{{command}}}\`: {{{description}}}
 {{/each}}
 {{/if}}
 
@@ -56,23 +56,23 @@ See [API.md](API.md) for detailed documentation.
 {{#if contributing}}
 ## Contributing
 
-{{contributing}}
+{{{contributing}}}
 {{/if}}
 
 {{#if license}}
 ## License
 
-{{license}}
+{{{license}}}
 {{/if}}
 
 ---
 {{#if author}}
-*Author:* {{author}}
+*Author:* {{{author}}}
 {{/if}}
 {{#if version}}
-*Version:* {{version}}
+*Version:* {{{version}}}
 {{/if}}
-*Generated on {{date}}*
+*Generated on {{{date}}}*
 `;
 
 interface ProjectInfo {

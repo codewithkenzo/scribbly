@@ -1,6 +1,6 @@
 {
   "name": "@codewithkenzo/scribbly",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "AI-powered auto-documentation CLI",
   "type": "module",
   "license": "MIT",
