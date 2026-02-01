@@ -10,7 +10,8 @@
     "url": "https://github.com/codewithkenzo/scribbly.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "scripts": {
     "cli": "bun run src/cli.ts",

@@ -1,0 +1,92 @@
+# Greptile Configuration for Comprehensive Code Reviews
+# https://docs.greptile.com/config
+
+version: 1
+
+# Review settings
+review:
+  # Enable comprehensive reviews
+  comprehensive: true
+  
+  # Review all files, not just changed ones for context
+  context_files: true
+  
+  # Severity levels to flag
+  severity:
+    - critical
+    - high
+    - medium
+    - low
+  
+  # Categories to review
+  categories:
+    - security
+    - performance
+    - maintainability
+    - correctness
+    - best-practices
+    - error-handling
+    - type-safety
+    - documentation
+
+# Language-specific rules
+languages:
+  typescript:
+    # Strict TypeScript checks
+    strict_null_checks: true
+    no_any: true
+    no_implicit_any: true
+    
+    # Zod schema validation
+    zod:
+      require_parse: true
+      no_unsafe_parse: true
+    
+    # Error handling
+    require_error_handling: true
+    no_empty_catch: true
+
+# Project-specific context
+context:
+  description: |
+    Scribbly is an AI-powered auto-documentation CLI that generates 
+    CHANGELOG.md from git commits, API.md from TypeScript source 
+    (TSDoc parsing), and README.md scaffolding from project metadata.
+  
+  key_files:
+    - src/config.ts              # Configuration
+    - src/cli.ts                 # CLI entry point
+    - src/parsers/typescript.ts  # TSDoc parser
+    - src/parsers/commits.ts     # Git commit parser
+    - src/commands/*.ts          # CLI commands
+  
+  patterns:
+    - "All configuration must be validated"
+    - "TSDoc parsing must handle edge cases"
+    - "Generated documentation must escape HTML entities"
+    - "AI features must be optional (work without API key)"
+
+# Security checks
+security:
+  # Check for secrets
+  no_hardcoded_secrets: true
+  no_api_keys_in_code: true
+  
+  # Input validation
+  require_input_validation: true
+  no_eval: true
+  no_shell_injection: true
+
+# Pull request settings
+pull_request:
+  # Auto-review on PR
+  auto_review: true
+  
+  # Require approval for critical issues
+  block_on_critical: true
+  
+  # Add inline comments
+  inline_comments: true
+  
+  # Summary comment
+  summary_comment: true
