@@ -1,8 +1,17 @@
 {
-  "name": "scribbly",
-  "version": "1.0.0",
+  "name": "@codewithkenzo/scribbly",
+  "version": "2.0.0",
   "description": "AI-powered auto-documentation CLI",
   "type": "module",
+  "license": "MIT",
+  "author": "codewithkenzo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codewithkenzo/scribbly.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "cli": "bun run src/cli.ts",
     "generate": "bun run src/cli.ts generate",
@@ -24,5 +33,19 @@
   },
   "bin": {
     "scribbly": "./src/cli.ts"
-  }
+  },
+  "files": [
+    "src",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "cli",
+    "documentation",
+    "changelog",
+    "ai",
+    "openai",
+    "bun"
+  ]
 }
