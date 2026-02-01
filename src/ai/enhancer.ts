@@ -31,7 +31,7 @@ export async function enhanceCommitSummary(commits: Commit[], apiKey?: string): 
       prompt,
     });
 
-    return object.summary;
+    return (object as { summary: string }).summary;
   } catch (error) {
     console.warn('AI enhancement failed, using default summary:', error);
     return `Changes include ${commits.length} commits`;

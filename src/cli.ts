@@ -61,12 +61,12 @@ async function main() {
 Scribbly - AI-powered auto-documentation CLI
 
 Usage:
-  bun run cli generate    Generate changelog from commits
-  bun run cli api         Generate API.md from TypeScript
-  bun run cli readme      Scaffold README.md from project
-  bun run cli watch       Auto-regenerate docs on file changes
-  bun run cli init        Create default config
-  bun run cli help        Show this help
+  scribbly generate    Generate changelog from commits
+  scribbly api         Generate API.md from TypeScript
+  scribbly readme      Scaffold README.md from project
+  scribbly watch       Auto-regenerate docs on file changes
+  scribbly init        Create default config
+  scribbly help        Show this help
 `);
       break;
     default:
