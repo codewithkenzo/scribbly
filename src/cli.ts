@@ -34,9 +34,9 @@ async function main() {
 Scribbly - AI-powered auto-documentation CLI
 
 Usage:
-  bun run cli generate    Generate changelog from commits
-  bun run cli init        Create default config
-  bun run cli help        Show this help
+  scribbly generate       Generate changelog from commits
+  scribbly init           Create default config
+  scribbly help           Show this help
 `);
       break;
     default:

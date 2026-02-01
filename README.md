@@ -1,2 +1,2 @@
 # scribbly
-Write curated documentation with AI using cli commander 
+Write curated documentation with AI using CLI commands 
