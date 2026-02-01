@@ -1,0 +1,67 @@
+# {{projectName}}
+
+{{#if description}}
+{{description}}
+{{/if}}
+
+{{#if badges.length}}
+{{#each badges}}
+![{{name}}]({{url}})
+{{/each}}
+{{/if}}
+
+## Installation
+
+```bash
+{{installCommand}}
+```
+
+{{#if usage}}
+## Usage
+
+{{usage}}
+{{/if}}
+
+{{#if features.length}}
+## Features
+
+{{#each features}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+{{#if commands.length}}
+## Commands
+
+{{#each commands}}
+- `{{command}}`: {{description}}
+{{/each}}
+{{/if}}
+
+{{#if apiReference}}
+## API Reference
+
+See [API.md](API.md) for detailed documentation.
+
+{{/if}}
+
+{{#if contributing}}
+## Contributing
+
+{{contributing}}
+{{/if}}
+
+{{#if license}}
+## License
+
+{{license}}
+{{/if}}
+
+---
+{{#if author}}
+*Author:* {{author}}
+{{/if}}
+{{#if version}}
+*Version:* {{version}}
+{{/if}}
+*Generated on {{date}}*

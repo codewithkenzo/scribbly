@@ -7,6 +7,9 @@ export interface ScribblyConfig {
   outputPath?: string;
   templatePath?: string;
   repoUrl?: string;
+  sourceDir?: string;
+  apiOutputPath?: string;
+  readmeOutputPath?: string;
 }
 
 const defaultConfig: ScribblyConfig = {
