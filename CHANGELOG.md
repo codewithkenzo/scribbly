@@ -7,7 +7,6 @@ All notable changes to this project will be documented in this file.
 - feat (\`v2\`): add api, readme, watch commands
 - feat: add greptile config
 - feat: initial scaffold for scribbly
-- feat: initial scaffold for scribbly
 ### fix
 - fix: improve API.md parsing and README.md generation
 - fix: consolidate README and help text fixes
