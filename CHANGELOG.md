@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### feat
-- feat (\`v2\`): add api, readme, watch commands
+- feat: add api, readme, watch commands (v2)
 - feat: add greptile config
 - feat: initial scaffold for scribbly
 - feat: initial scaffold for scribbly
