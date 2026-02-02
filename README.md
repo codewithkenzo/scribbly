@@ -44,7 +44,7 @@ npm install -g scribbly
 scribbly init
 ```
 
-This creates a `.scribblyrc.json` config file in your project.
+This creates a `scribbly.config.json` config file in your project.
 
 ### 2. Set Your OpenAI API Key
 
@@ -99,7 +99,7 @@ scribbly init
 
 ## Configuration
 
-Create a `.scribblyrc.json` file in your project root:
+Create a `scribbly.config.json` file in your project root:
 
 ```json
 {
@@ -207,7 +207,7 @@ scribbly generate
 
 ### Documentation Not Updating
 
-Check that your file patterns in `.scribblyrc.json` match your source files:
+Check that your file patterns in `scribbly.config.json` match your source files:
 
 ```bash
 scribbly generate --verbose
