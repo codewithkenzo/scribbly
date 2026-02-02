@@ -1,5 +1,5 @@
-import { readFileSync, existsSync, lstatSync, readdirSync } from 'fs';
-import { join, relative } from 'path';
+import { readFileSync, existsSync, lstatSync, readdirSync } from 'node:fs';
+import { join, relative } from 'node:path';
 
 export interface TypeDocComment {
   summary: string;
@@ -44,7 +44,7 @@ function parseTsDocComment(commentBlock: string): TypeDocComment {
     .trim();
 
   const summaryMatch = content.match(/^([^@]*)/);
-  if (summaryMatch && summaryMatch[1].trim()) {
+  if (summaryMatch?.[1].trim()) {
     comment.summary = summaryMatch[1].trim();
   }
 
@@ -113,7 +113,7 @@ export function parseTypeScriptFile(filePath: string, baseDir: string): ParsedMo
 
   while ((match = exportPattern.exec(content)) !== null) {
     const fullComment = match[0];
-    const commentContent = match[1];
+    const _commentContent = match[1];
     const exportMatch = match[2];
     
     const nameMatch = exportMatch.match(/(?:function|const|class|interface|type|enum|default)\s+(\w+)/);
@@ -178,7 +178,7 @@ function findTypeScriptFiles(dir: string, baseDir: string): string[] {
   let entries: string[] = [];
   try {
     entries = readdirSync(dir);
-  } catch (error) {
+  } catch (_error) {
     return files;
   }
 
@@ -193,7 +193,7 @@ function findTypeScriptFiles(dir: string, baseDir: string): string[] {
       } else if (fullPath.endsWith('.ts') && !fullPath.includes('.d.ts')) {
         files.push(fullPath);
       }
-    } catch (error) {
+    } catch (_error) {
       // Skip files that can't be accessed
     }
   }
