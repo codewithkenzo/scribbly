@@ -1,6 +1,5 @@
 # API Reference
 
-
 ## Module: parsers/typescript
 
 ### `parseTypeScriptFile`
@@ -11,11 +10,8 @@ Parse TSDoc comment block
 export function parseTypeScriptFile
 ```
 
-
-
-
-
 ---
+
 ### `parseTypeScriptDirectory`
 
 ...
@@ -24,11 +20,8 @@ export function parseTypeScriptFile
 export function parseTypeScriptDirectory
 ```
 
-
-
-
-
 ---
+
 ### `parseTypeScript`
 
 Parse a single module or directory
@@ -37,11 +30,8 @@ Parse a single module or directory
 export function parseTypeScript
 ```
 
-
-
-
-
 ---
+
 ## Module: commands/watch
 
 ### `watchMode`
@@ -51,12 +41,6 @@ Debounced file watcher that regenerates docs on changes
 ```typescript
 export async function watchMode
 ```
-
-
-
-
-
----
 
 ---
 *Generated on 2026-02-01*
