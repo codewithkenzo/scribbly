@@ -1,11 +1,11 @@
 #!/usr/bin/env bun
 
 import { parseArgs } from 'util';
-import { generateChangelog } from './generator.js';
-import { initConfig } from './config.js';
-import { generateApiDocs } from './commands/api.js';
-import { generateReadme } from './commands/readme.js';
-import { watchMode } from './commands/watch.js';
+import { generateChangelog } from './generator';
+import { initConfig } from './config';
+import { generateApiDocs } from './commands/api';
+import { generateReadme } from './commands/readme';
+import { watchMode } from './commands/watch';
 
 const args = parseArgs({
   args: Bun.argv,

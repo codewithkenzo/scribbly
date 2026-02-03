@@ -2,9 +2,9 @@ import Handlebars from 'handlebars';
 import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { loadConfig } from './config.js';
-import { parseCommitsFromGit, groupCommitsByType } from './parsers/commits.js';
-import { enhanceCommitSummary } from './ai/enhancer.js';
+import { loadConfig } from './config';
+import { parseCommitsFromGit, groupCommitsByType } from './parsers/commits';
+import { enhanceCommitSummary } from './ai/enhancer';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

@@ -1,7 +1,7 @@
 import { existsSync, watch, unwatchFile } from 'fs';
 import { join } from 'path';
-import { generateApiDocs } from './api.js';
-import { generateReadme } from './readme.js';
+import { generateApiDocs } from './api';
+import { generateReadme } from './readme';
 
 const DEBOUNCE_MS = 500;
 let timeoutId: ReturnType<typeof setTimeout> | null = null;
