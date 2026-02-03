@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { readFileSync, existsSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { loadConfig } from './config.js';
 import { parseCommitsFromGit, groupCommitsByType } from './parsers/commits.js';
