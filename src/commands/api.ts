@@ -23,7 +23,7 @@ export async function generateApiDocs(): Promise<void> {
 
   // Determine source directory (default to src)
   const sourceDir = config.sourceDir || './src';
-  
+
   if (!existsSync(sourceDir)) {
     console.error(`Source directory not found: ${sourceDir}`);
     process.exit(1);

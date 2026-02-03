@@ -105,7 +105,7 @@ export async function generateReadme(): Promise<void> {
   // Gather project information
   const packageJsonPath = join(process.cwd(), 'package.json');
   let packageInfo: Record<string, unknown> = {};
-  
+
   if (existsSync(packageJsonPath)) {
     try {
       const content = readFileSync(packageJsonPath, 'utf-8');

@@ -36,7 +36,7 @@ function parseTsDocComment(commentBlock: string): TypeDocComment {
 
   const commentMatch = commentBlock.match(/\/\*\*([\s\S]*?)\*\//);
   if (!commentMatch) return comment;
-  
+
   const content = commentMatch[1]
     .split('\n')
     .map(line => line.replace(/^\s*\*\s?/, ''))
@@ -115,10 +115,10 @@ export function parseTypeScriptFile(filePath: string, baseDir: string): ParsedMo
     const fullComment = match[0];
     const commentContent = match[1];
     const exportMatch = match[2];
-    
+
     const nameMatch = exportMatch.match(/(?:function|const|class|interface|type|enum|default)\s+(\w+)/);
     const name = nameMatch ? nameMatch[1] : 'anonymous';
-    
+
     // Find line number
     const lineNumber = content.substring(0, match.index).split('\n').length;
 
@@ -184,7 +184,7 @@ function findTypeScriptFiles(dir: string, baseDir: string): string[] {
 
   for (const entry of entries) {
     const fullPath = join(dir, entry);
-    
+
     try {
       const stat = lstatSync(fullPath);
 
