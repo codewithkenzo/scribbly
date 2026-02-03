@@ -7,7 +7,7 @@
 Parse TSDoc comment block
 
 ```typescript
-export function parseTypeScriptFile
+export function parseTypeScriptFile(filePath: string, baseDir: string): ParsedModule | null
 ```
 
 ---
@@ -17,7 +17,7 @@ export function parseTypeScriptFile
 ...
 
 ```typescript
-export function parseTypeScriptDirectory
+export function parseTypeScriptDirectory(dir: string): ParsedModule[]
 ```
 
 ---
@@ -27,7 +27,7 @@ export function parseTypeScriptDirectory
 Parse a single module or directory
 
 ```typescript
-export function parseTypeScript
+export function parseTypeScript(source: string): ParsedModule[]
 ```
 
 ---
@@ -39,7 +39,7 @@ export function parseTypeScript
 Debounced file watcher that regenerates docs on changes
 
 ```typescript
-export async function watchMode
+export async function watchMode(): Promise<void>
 ```
 
 ---
