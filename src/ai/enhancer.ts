@@ -1,7 +1,7 @@
 import { generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { z } from 'zod';
-import type { Commit } from '../parsers/commits.js';
+import type { Commit } from '../parsers/commits';
 
 const summarySchema = z.object({
   summary: z.string(),

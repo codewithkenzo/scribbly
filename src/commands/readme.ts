@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { loadConfig } from '../config.js';
+import { loadConfig } from '../config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
